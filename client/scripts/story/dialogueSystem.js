@@ -5,12 +5,12 @@ export class DialogueSystem {
         this.box = document.getElementById('dialogue-box');
         this.speaker = this.box.querySelector('.speaker-name');
         this.text = this.box.querySelector('.text-content');
-        this.choices = this.box.querySelector('.choices');
+        this.portrait = this.box.querySelector('.character-portrait');
         this.nextBtn = document.getElementById('dialogue-next');
         
         this.isTyping = false;
         this.currentText = "";
-        this.typingSpeed = 30; // ms per character
+        this.typingSpeed = 25; 
         
         this.setupEventListeners();
     }
@@ -27,7 +27,8 @@ export class DialogueSystem {
 
     async speak(character, message, useAI = true) {
         this.show();
-        this.speaker.innerText = character;
+        this.updatePortrait(character);
+        this.speaker.innerText = character.toUpperCase();
         this.nextBtn.classList.add('hidden');
         
         let finalMessage = message;
@@ -44,6 +45,16 @@ export class DialogueSystem {
         await this.typeMessage(finalMessage);
     }
 
+    updatePortrait(character) {
+        // Placeholder colors for portraits
+        const colors = {
+            'RAMA': '#ffcc33',
+            'SAGE VISHVAMITRA': '#ff8c00',
+            'NARRATOR': '#8b0000'
+        };
+        this.portrait.style.backgroundColor = colors[character.toUpperCase()] || '#555';
+    }
+
     async typeMessage(message) {
         this.isTyping = true;
         this.currentText = message;
@@ -51,9 +62,12 @@ export class DialogueSystem {
         this.nextBtn.classList.add('hidden');
 
         for (let i = 0; i < message.length; i++) {
-            if (!this.isTyping) break; // Skip if user force-finished
+            if (!this.isTyping) break;
             this.text.innerText += message[i];
-            await new Promise(r => setTimeout(r, this.typingSpeed));
+            
+            // Randomize typing speed slightly for natural feel
+            const jitter = Math.random() * 15;
+            await new Promise(r => setTimeout(r, this.typingSpeed + jitter));
         }
 
         this.isTyping = false;
