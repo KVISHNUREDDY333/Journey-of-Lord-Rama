@@ -15,44 +15,73 @@ export class Environment {
     }
 
     draw(ctx) {
-        // Draw floor pattern (simple grid for Ayodhya)
         this.drawFloor(ctx);
-
-        // Draw static obstacles
-        this.obstacles.forEach(obs => {
-            ctx.fillStyle = obs.color || '#555';
-            ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
-            
-            // Add some detail to obstacles
-            ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-            ctx.strokeRect(obs.x, obs.y, obs.width, obs.height);
-        });
-
-        // Draw NPCs
+        this.drawObstacles(ctx);
+        this.drawDecorations(ctx);
         this.npcs.forEach(npc => npc.draw(ctx));
     }
 
     drawFloor(ctx) {
+        const { width, height } = this.game.canvas;
+        
+        // Base ground color (Warm Sand)
+        ctx.fillStyle = '#f5deb3';
+        ctx.fillRect(-this.game.camera.x, -this.game.camera.y, this.map.width, this.map.height);
+
+        // Luxury Tile Grid
         const gridSize = 100;
-        ctx.strokeStyle = 'rgba(255, 204, 51, 0.05)';
+        ctx.strokeStyle = 'rgba(139, 69, 19, 0.1)';
         ctx.lineWidth = 1;
         
-        for (let x = 0; x < this.game.canvas.width; x += gridSize) {
+        for (let x = 0; x <= this.map.width; x += gridSize) {
             ctx.beginPath();
             ctx.moveTo(x, 0);
-            ctx.lineTo(x, this.game.canvas.height);
+            ctx.lineTo(x, this.map.height);
             ctx.stroke();
         }
-        for (let y = 0; y < this.game.canvas.height; y += gridSize) {
+        for (let y = 0; y <= this.map.height; y += gridSize) {
             ctx.beginPath();
             ctx.moveTo(0, y);
-            ctx.lineTo(this.game.canvas.width, y);
+            ctx.lineTo(this.map.width, y);
             ctx.stroke();
         }
     }
 
+    drawObstacles(ctx) {
+        this.obstacles.forEach(obs => {
+            // Gradient for depth
+            const grad = ctx.createLinearGradient(obs.x, obs.y, obs.x, obs.y + obs.height);
+            grad.addColorStop(0, obs.color);
+            grad.addColorStop(1, this.calculateShadowColor(obs.color));
+            
+            ctx.fillStyle = grad;
+            ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            
+            // Accents
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.strokeRect(obs.x, obs.y, obs.width, obs.height);
+        });
+    }
+
+    drawDecorations(ctx) {
+        this.map.decorations.forEach(dec => {
+            if (dec.type === 'lotus_pond') {
+                ctx.fillStyle = '#4682b4';
+                ctx.beginPath();
+                ctx.ellipse(dec.x, dec.y, dec.width/2, dec.height/2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#87ceeb';
+                ctx.stroke();
+            }
+        });
+    }
+
+    calculateShadowColor(hex) {
+        // Simple mock for a darker version of the color
+        return hex === '#ffd700' ? '#b8860b' : '#3d1f00';
+    }
+
     checkCollision(rect) {
-        // Check if a rectangle (e.g., player) intersects with any obstacle
         for (const obs of this.obstacles) {
             if (rect.x < obs.x + obs.width &&
                 rect.x + rect.width > obs.x &&
