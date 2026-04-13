@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "title": "Childhood of Rama",
+        "description": "Training with Sage Vishvamitra and protecting the sacred rituals.",
+        "lesson": "Discipline and protection of the righteous."
+    },
+    {
+        "id": 2,
+        "title": "Sita Swayamvar",
+        "description": "The divine bow of Lord Shiva and the union of Rama and Sita.",
+        "lesson": "Integrity and strength and humility."
+    },
+    {
+        "id": 3,
+        "title": "Exile (Vanavas)",
+        "description": "Leaving Ayodhya for the forest to fulfill a father's promise.",
+        "lesson": "Dharma over personal desire."
+    },
+    {
+        "id": 4,
+        "title": "Golden Deer Incident",
+        "description": "The fateful chase that led to a test of heart.",
+        "lesson": "Discernment and the dangers of attachment."
+    },
+    {
+        "id": 5,
+        "title": "Sita Abduction",
+        "description": "The dark scheme of Ravana and the beginning of the search.",
+        "lesson": "Resilience in the face of despair."
+    },
+    {
+        "id": 6,
+        "title": "Meeting Hanuman",
+        "description": "An alliance formed in the caves of Kishkindha.",
+        "lesson": "Devotion and the power of brotherhood."
+    },
+    {
+        "id": 7,
+        "title": "Lanka Exploration",
+        "description": "Hanuman's leap of faith and the message of hope.",
+        "lesson": "Courage and loyalty to the truth."
+    },
+    {
+        "id": 8,
+        "title": "Bridge Construction (Ram Setu)",
+        "description": "The impossible feat of building a path across the ocean.",
+        "lesson": "Collectivism and unwavering faith."
+    },
+    {
+        "id": 9,
+        "title": "War with Ravana",
+        "description": "The ultimate battle between light and darkness.",
+        "lesson": "Victory of righteousness over ego."
+    },
+    {
+        "id": 10,
+        "title": "Victory & Return",
+        "description": "The return to Ayodhya and the coronation of Dharma.",
+        "lesson": "Justice and the beginning of a golden era."
+    }
+]

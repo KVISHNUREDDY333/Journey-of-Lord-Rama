@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMAYANA: THE EPIC JOURNEY</title>
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <link rel="stylesheet" href="/static/styles/ui.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Canvas for Game World -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- UI Overlay -->
+        <div id="ui-layer">
+            <!-- Loading Screen -->
+            <div id="loading-screen" class="screen">
+                <div class="loader-content">
+                    <h1 class="logo-text">RAMAYANA</h1>
+                    <p class="subtitle-text">THE EPIC JOURNEY</p>
+                    <div class="progress-bar">
+                        <div id="loading-progress" class="fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Menu -->
+            <div id="main-menu" class="screen hidden">
+                <div class="menu-content">
+                    <h1 class="title">Ramayana</h1>
+                    <nav>
+                        <button id="btn-start">Start Journey</button>
+                        <button id="btn-chapters">Chapters</button>
+                        <button id="btn-settings">Settings</button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Game HUD -->
+            <div id="hud" class="hidden">
+                <div class="hud-top">
+                    <div id="health-bar" class="stat-bar">
+                        <div class="icon">❤️</div>
+                        <div class="bar"><div id="health-fill" class="fill"></div></div>
+                    </div>
+                    <div id="level-title">Level 1: Ayodhya</div>
+                </div>
+                <div class="hud-bottom">
+                    <div id="dialogue-box" class="hidden">
+                        <div class="speaker-name">Rama</div>
+                        <div class="text-content">Welcome to the journey...</div>
+                        <div class="choices"></div>
+                        <button id="dialogue-next" class="hidden">Next ➔</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/static/scripts/main.js"></script>
+</body>
+</html>

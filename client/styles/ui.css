@@ -1,0 +1,131 @@
+/* HUD and Dialogue UI */
+#hud {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#hud > * {
+    pointer-events: auto;
+}
+
+.hud-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--glass-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 204, 51, 0.3);
+}
+
+.stat-bar .bar {
+    width: 200px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.stat-bar .fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff4d4d, #ff0000);
+    width: 100%;
+}
+
+#level-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+}
+
+/* Dialogue Box */
+#dialogue-box {
+    background: var(--glass-bg);
+    border: 2px solid var(--primary-gold);
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 15px;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#dialogue-box::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    width: 100px;
+    height: 3px;
+    background: var(--primary-gold);
+}
+
+.speaker-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--deep-saffron);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.text-content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.choices {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.choice-btn {
+    background: rgba(255, 204, 51, 0.1);
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.choice-btn:hover {
+    background: var(--primary-gold);
+    color: var(--royal-blue);
+}
+
+#dialogue-next {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--primary-gold);
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(5px); }
+    100% { opacity: 0.5; transform: translateX(0); }
+}
